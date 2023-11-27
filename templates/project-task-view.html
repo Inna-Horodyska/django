@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-body">
+        <div class="col-xs-12 text-center">
+            <h4>Project {{ team_name }}</h4>
+        </div>
+        <div class="icon-bar">
+            <a class="active" href="/"><i class="fa fa-home" style="font-size:36px"></i></a>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Assignee</th>
+                <th> <a type="button" class="btn btn-success" href="/task-create/{{ project_id }}">Create</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.assignee }}</td>
+                    <td>
+                        <a type="button" class="btn btn-warning" href="/task-update/{{ task.team_id }}">Update</a>
+                        <a type="button" class="btn btn-danger" href="/task-delete/{{ task.team_id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{#    <div class="card-body">#}
+{#        <form action="/employee-upload/{{ team_id }}" method="post" enctype="multipart/form-data">#}
+{#            {% csrf_token %}#}
+{#            <input type="file" class="form-control" name="employee_list">#}
+{#            <br>#}
+{#            <input type="submit" value="Upload" class="btn btn-success">#}
+{#        </form>#}
+{#    </div>#}
+{#    <div class="col-xs-12 text-center">#}
+{#        <h2>Project Management Triangle</h2>#}
+{#    </div>#}
+{#    <div class="col-xs-12 text-center">#}
+{#        <img src="data:image/png;base64, {{ chart_base64 }}" alt="Pie Chart"/>#}
+{#    </div>#}
+{% endblock %}

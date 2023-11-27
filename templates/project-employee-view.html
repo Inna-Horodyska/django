@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-body">
+        <div class="col-xs-12 text-center">
+            <h4>Employee</h4>
+        </div>
+        <div class="icon-bar">
+                <a class="active" href="/"><i class="fa fa-home" style="font-size:36px"></i></a>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Efficiency</th>
+                <th> <a type="button" class="btn btn-success" href="/employee-create/{{ project_id }}">Create</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.surname }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.efficiency }}</td>
+                    <td>
+                        <a type="button" class="btn btn-warning" href="/employee-update/{{ employee.employee_id }}">Update</a>
+                        <a type="button" class="btn btn-danger" href="/task-delete/{{ task.team_id }}">Delete</a>
+                        <a type="button" class="btn btn-danger" href="/employee-task-view/{{ employee.employee_id }}">VIEW</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{#    <div class="card-body">#}
+{#        <form action="/employee-upload/{{ team_id }}" method="post" enctype="multipart/form-data">#}
+{#            {% csrf_token %}#}
+{#            <input type="file" class="form-control" name="employee_list">#}
+{#            <br>#}
+{#            <input type="submit" value="Upload" class="btn btn-success">#}
+{#        </form>#}
+{#    </div>#}
+{#    <div class="col-xs-12 text-center">#}
+{#        <h2>Project Management Triangle</h2>#}
+{#    </div>#}
+{#    <div class="col-xs-12 text-center">#}
+{#        <img src="data:image/png;base64, {{ chart_base64 }}" alt="Pie Chart"/>#}
+{#    </div>#}
+{% endblock %}

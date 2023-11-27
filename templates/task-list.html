@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-xs-12 text-center">
+            <h4>Task</h4>
+    </div>
+    <div class="icon-bar">
+      <a class="active" href="/"><i class="fa fa-home"></i></a>
+{#      <a class="inactive" href="{% url 'task-create' %}"><i class="fa fa-plus-square"></i></a>#}
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Assignee</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.assignee }}</td>
+                    <td>
+                        <a type="button" class="btn btn-success" href="/task-view/{{ team.team_id }}">View</a>
+                        <a type="button" class="btn btn-warning" href="/task-update/{{ team.team_id }}">Update</a>
+                        <a type="button" class="btn btn-danger" href="/task-delete/{{ team.team_id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{#        <a type="button" class="btn btn-success" href="{% url 'task-create' %}">Create</a>#}
+    </div>
+{% endblock %}

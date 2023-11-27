@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-xs-12 text-center">
+            <h4>Projects</h4>
+    </div>
+    <div class="icon-bar">
+      <a class="active" href="/"><i class="fa fa-home" style="font-size:36px"></i></a>
+      <a class="inactive" href="{% url 'project-create' %}"><i class="fa fa-plus-square" style="font-size:36px"></i></a>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.name }}</td>
+                    <td>
+                        <a type="button" class="btn btn-success" href="/project-task-list/{{ project.project_id }}">View</a>
+{#                        <a type="button" class="btn btn-warning" href="/task-update/{{ project.project_id }}">Update</a>#}
+                        <a type="button" class="btn btn-danger" href="/project-delete/{{ project.project_id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{#        <a type="button" class="btn btn-success" href="{% url 'task-create' %}">Create</a>#}
+    </div>
+{% endblock %}
